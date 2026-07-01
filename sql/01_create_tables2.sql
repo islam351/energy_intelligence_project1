@@ -110,3 +110,15 @@ CREATE TABLE anomalies (
     cost_impact_eur DECIMAL(12,2),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+-- Create indexes for better performance
+CREATE INDEX idx_energy_readings_building_timestamp 
+ON energy_readings(building_id, timestamp);
+
+CREATE INDEX idx_energy_readings_timestamp 
+ON energy_readings(timestamp);
+
+CREATE INDEX idx_peak_demand_building_date 
+ON peak_demand(building_id, peak_date);
+
+CREATE INDEX idx_weather_data_building_date 
+ON weather_data(building_id, weather_date);
