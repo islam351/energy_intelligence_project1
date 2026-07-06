@@ -264,3 +264,21 @@ GROUP BY
     b.building_name,
     b.occupancy_rate
 ORDER BY total_energy DESC;
+
+--13)"How to detect energy waste and forecast consumption for commercial buildings?"
+WITH anomaly_summary AS (
+    SELECT 
+        b.building_name,
+        COUNT(*) AS anomaly_count,
+        ROUND(SUM(a.cost_impact_eur), 2) AS total_cost_2years
+    FROM anomalies a
+    JOIN buildings b ON a.building_id = b.building_id
+    GROUP BY b.building_name
+)
+SELECT 
+    building_name,
+    anomaly_count,
+    total_cost_2years,
+    ROUND(total_cost_2years * 52 / 2, 2) AS annual_projection_eur,
+    ROUND(total_cost_2years * 52 / 2 * 50 / 3, 2) AS portfolio_projection_eur
+FROM anomaly_summary;
