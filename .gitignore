@@ -25,4 +25,4 @@ env/
 .DS_Store
 
 # Outputs
-outputs/charts/*.png
+
