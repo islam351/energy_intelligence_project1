@@ -14,7 +14,7 @@ __pycache__/
 
 # Data files
 *.csv
-*.xlsx
+
 
 # Environment
 .env
