@@ -1,1 +1,0 @@
-select * from weather_data where building_id = 17
